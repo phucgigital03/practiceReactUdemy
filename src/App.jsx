@@ -1,69 +1,99 @@
+import { useState } from 'react'
 import './App.css'
+import Profilecard from './Profilecard'
+// import About from './components/About'
+// import Contact from './components/Contact'
+// import Footer from './components/Footer'
+// import Header from './components/Header'
+// import ProjectList from './components/ProjectList'
 
 function App() {
-  const name = "Nguyen Quoc Phuc";
-  const profession = "Full stack Developer";
-  const projects = [
-    {
-      title: "Project One",
-      description: "A web app build with React",
-      link: "#"
-    },
-    {
-      title: "Project Two",
-      description: "A web app build with Nodejs",
-      link: "#"
-    },
-    {
-      title: "Project Three",
-      description: "A web app build with Spring Boot",
-      link: "#"
-    },
-  ]
+    const showHobby = (hobby)=>{
+        alert("you selected " + hobby)
+    }
+
+    const aliceProps = {
+        name:"Alice",
+        age:"23", 
+        num:"2", 
+        isMember: true,
+        hobbies: ["swimming","play volleyball"],
+        handleShowHobby: showHobby
+    }
+
+    const petterProps = {
+        name: "Petter", 
+        age: "24", 
+        num: 2,
+        isMember: false,
+        hobbies: ["swimming","play video game"],
+        handleShowHobby: showHobby
+    }
+
+    const [count,setCount] = useState(0);
+
+    const increatement = ()=>{
+      setCount(count + 1);
+    }
+
+    const decreatement = ()=>{
+      setCount(count - 1);
+    }
+
+    const plusTwice = ()=>{
+      setCount(prevC => prevC + 1);
+      setCount(prevC => prevC + 1);
+    }
+
+    const [counters,setCounter] = useState([{id: 0,value: 0}]);
+
+    const addCounter = ()=>{
+      setCounter([...counters, {id: counters.length + 1, value: 0}]);
+    }
+
+    const increatementObject = (id)=>{
+      // counters.forEach(counter => {
+      //   if(counter.id === id){
+      //     counter.value = counter.value + 1;
+      //   }
+      // })
+      // setCounter([...counters])
+
+      setCounter(counters.map(counter => {
+        return counter.id === id ? {...counter,value: counter.value + 1} : counter
+      }))
+    }
   
   return (
     <div className='App'>
-      {/* Header section */}
-      <header className='header'>
-        <h1>{name}</h1>
-        <p>{profession}</p>
-        <nav>
-          <a href='#about'>About</a>
-          <a href='#projects'>Projects</a>
-          <a href='#contact'>Contact</a>
-        </nav>
-      </header>
+      {/* <Header/>
+      <About/>
+      <ProjectList/>
+      <Contact/>
+      <Footer/> */}
+      <Profilecard {...aliceProps}/>
+      <Profilecard {...petterProps}/>
 
-      {/* About section */}
-      <section id='about' className='aboutSection'>
-        <h2>About me</h2>
-        <p>I&apos;m {name}, a passionate {profession}, i love building websites for real world user problems</p>
-      </section>
+      <h1>Count : {count}</h1>
+      <button onClick={increatement}>increatement</button>
+      <button onClick={decreatement}>decreatement</button>
+      <button onClick={plusTwice}>+2</button>
 
-      {/* Project section */}
-      <section id='projects' className='projectsSection'>
-        <h2>Projects</h2>
-        <div className='project-list'>
-          {projects.map((project,index)=>{
-            return <div key={index} className='project-item'>
-                <h3>{project.title}</h3>
-                <h3>{project.description}</h3>
-                <a href={project.link} target='_blank'>View project</a>
-            </div>
-          })}
-        </div>
-      </section>
+      <br/>
+      <button onClick={addCounter}>Add Counter</button>
+        <ul>
+          {
+            counters.map((counter)=>{
+              return (
+                <li key={counter.id}>
+                    Counter {counter.id}: {counter.value}
+                    <button onClick={()=>{increatementObject(counter.id)}}>plus 1</button>
+                </li>
+              )
+            })
+          }
+        </ul>
 
-      {/* Contact section */}
-      <section id='contact' className='contactSection'>
-      <h2>Contact me</h2>
-      <p>my email <a className='emailContact' href='mailto:phucnguyen'>phucnguyendigital2003@gmail.com</a></p>
-      </section>
-
-      {/* Footer section */}
-      <footer className='footer'>
-          <p>Copyright 2025</p>
-      </footer>
     </div>
   )
 }
