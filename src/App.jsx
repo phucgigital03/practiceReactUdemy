@@ -1,61 +1,12 @@
 import { useForm } from 'react-hook-form'
 import './App.css'
+import DarkModeToggle from './DarkModeToggle'
 
 function App() {
-    const {register,handleSubmit,formState: {errors},reset} = useForm();
-    const onSumit = (data)=>{
-      console.log(data)
-
-    }
-
-    const names = ['user1','user2'];
-    const checkExistingUser = async(username)=>{
-      const result = await new Promise((resolve)=>{
-          setTimeout(()=>{
-            resolve(names)
-          },2000)
-      })
-      return result.includes(username)
-    }
   return (
-    <div className='bg-gray-100 flex justify-center items-center h-screen'>
-      <div className='bg-white p-8 rounded-lg shadow-lg'>
-        <h1 className='text-2xl font-bold text-gray-800'>Hello tailwindcss</h1>
-      </div>
-      {/* <h1>Forms in React</h1>
-      <form action="#" onSubmit={handleSubmit(onSumit)}>
-          <label>
-            Name:
-            <input 
-              {...register('name',  {
-                required: 'Name is required',
-                minLength: {value: 2, message: 'Name at least 2 characters'},
-                validate: {
-                  isNotNumber: (value) => isNaN(value) || "Number cannot be there",
-                  checkUser: async (value) => {
-                    const check =  await checkExistingUser(value);
-                    return !check || "User already has DB"
-                  }
-                }
-              })
-              }
-            />
-            {errors.name && <span>{errors.name.message}</span>}
-          </label>
-          <br />
-
-
-          <label>
-            Email:
-            <input 
-              {...register('email',{required: 'Email is required'})}
-            />
-          </label>
-            {errors.email && <span>{errors.email.message}</span>}
-          <br />
-          <button>submit</button>
-          <button type='button' onClick={()=>{reset()}}>reset</button>
-      </form> */}
+    <div className='p-4 bg-white min-h-screen dark:bg-black dark:text-white'>
+      <DarkModeToggle/>
+      <h1 className='text-2xl'>Hello Dark Mode apply with tailwind csss</h1>
     </div>
   )
 }
