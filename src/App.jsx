@@ -18,8 +18,11 @@ function App() {
       return result.includes(username)
     }
   return (
-    <div className='App'>
-      <h1>Forms in React</h1>
+    <div className='bg-gray-100 flex justify-center items-center h-screen'>
+      <div className='bg-white p-8 rounded-lg shadow-lg'>
+        <h1 className='text-2xl font-bold text-gray-800'>Hello tailwindcss</h1>
+      </div>
+      {/* <h1>Forms in React</h1>
       <form action="#" onSubmit={handleSubmit(onSumit)}>
           <label>
             Name:
@@ -52,7 +55,7 @@ function App() {
           <br />
           <button>submit</button>
           <button type='button' onClick={()=>{reset()}}>reset</button>
-      </form>
+      </form> */}
     </div>
   )
 }
