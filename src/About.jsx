@@ -5,7 +5,7 @@ import { Outlet, useSearchParams } from 'react-router-dom'
 function About() {
   const [searchParams,setSearchParams] = useSearchParams();
   const topic = searchParams.get("topic") || "general";
-  console.log(topic)
+  // console.log(topic)
 
   const handleTopic = (newTopic)=>{
       setSearchParams(

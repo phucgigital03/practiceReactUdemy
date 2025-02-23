@@ -9,13 +9,15 @@ import { Link } from 'react-router-dom'
 import Team from './Team'
 import Counter from './Counter'
 import DisPlay from './DisPlay'
+import PostList from './PostList'
 
 function App() {
   return (
       <Router>
         <h1 className='text-3xl'>Test Redux</h1>
-        <Counter/>
-        <DisPlay/>
+        {/* <Counter/>
+        <DisPlay/> */}
+        <PostList/>
 
         <div className='min-h-screen'>
           <nav className='bg-blue-400 text-black'>
